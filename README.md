@@ -1,75 +1,32 @@
-# React + TypeScript + Vite
+# Explorador de Anime
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+SPA desarrollada con React + TypeScript que consume la API pública de Kitsu para buscar animes, mostrarlos en tarjetas y guardarlos en una colección personal persistida con Local Storage.
 
-Currently, two official plugins are available:
+## API utilizada
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+**Kitsu API** — https://kitsu.app/api/edge/anime
+API REST pública de anime y manga, sin necesidad de autenticación para lecturas (GET).
 
-## React Compiler
+## Funcionalidades
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- Búsqueda de animes por texto en tiempo real.
+- Listado de resultados en tarjetas (imagen, título, tipo, estado, puntaje).
+- Manejo de estados de carga y error, con botón de reintentar.
+- Colección personal ("Mi colección") con operaciones CRUD completas:
+  - **Crear**: agregar un anime a la colección desde el buscador.
+  - **Leer**: ver todos los animes guardados.
+  - **Actualizar**: editar el estado personal (Pendiente / Viendo / Visto) y una nota personal.
+  - **Eliminar**: quitar un anime de la colección.
+- Persistencia en Local Storage: los datos sobreviven al recargar la página.
+- Diseño responsive y accesible (labels asociados, texto alternativo en imágenes).
 
-## Expanding the ESLint configuration
+## Instalación y ejecución
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
+```bash
+npm install
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Luego abrir la URL que indica la terminal (por defecto `http://localhost:5173`).
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
-```
+## Estructura del proyecto
